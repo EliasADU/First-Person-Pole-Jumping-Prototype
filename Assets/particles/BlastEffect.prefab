@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5869923203956803193}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: BlastEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2725781009892717788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.24, y: 21.12, z: -171.73}
-  m_LocalScale: {x: 0.50787, y: 0.50787, z: 0.50787}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.28427398, y: 0.28427398, z: 0.28427398}
   m_Children:
   - {fileID: 7407937628423888503}
   - {fileID: 1414876611954072097}
@@ -43,13 +43,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirePillarBlast
       objectReference: {fileID: 0}
+    - target: {fileID: 129134, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 147968, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 148632, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 178522, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 199426, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 431826, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 431826, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431826, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 431826, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.980194
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 431826, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -145,17 +173,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5869923203956803193}
     m_Modifications:
+    - target: {fileID: 103864, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 116224, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 163984, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 166630, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 167926, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
       propertyPath: m_Name
       value: ShadowPillarBlast
+      objectReference: {fileID: 0}
+    - target: {fileID: 167926, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 171238, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 172024, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 458198, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 458198, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 458198, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 458198, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.980194
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 458198, guid: 1ededa2e5f5650d48978cca088b4e47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

@@ -9,12 +9,20 @@ public class AimParticleHandler : MonoBehaviour
 
     GameObject aimingParticles;
 
+    [SerializeField]
+    GameObject blastParticlesPrefab;
+
+    GameObject blastParticles;
+
+    bool particlesStopped = true;
+
     //ParticleSystem aimingParticles;
 
     // Start is called before the first frame update
     void Start()
     {
         aimingParticles = Instantiate(aimingParticlesPrefab, Vector3.zero, Quaternion.identity);
+        
     }
 
     // Update is called once per frame
@@ -32,12 +40,24 @@ public class AimParticleHandler : MonoBehaviour
         aimingParticles.transform.forward = -direction;
         aimingParticles.transform.position = pos;
         aimingParticles.SetActive(true);
+        particlesStopped = false;
+    }
+
+    public void BlastParticles(Vector3 pos, Vector3 direction)
+    {
+        blastParticles = Instantiate(blastParticlesPrefab, Vector3.zero, Quaternion.identity);
+        blastParticles.transform.forward = direction;
+        blastParticles.transform.position = pos;
     }
 
     public void StopParticles()
     {
-        DestroyPointer destroyer = aimingParticles.GetComponent<DestroyPointer>();
-        destroyer.DestroyMe();
-        aimingParticles = null;
+        if(particlesStopped == false)
+        {
+            DestroyPointer destroyer = aimingParticles.GetComponent<DestroyPointer>();
+            destroyer.DestroyMe();
+            aimingParticles = null;
+            particlesStopped = true;
+        }
     }
 }

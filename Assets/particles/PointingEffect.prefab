@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7332375444152050490}
   - component: {fileID: 4417555019238801420}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PointingEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,19 +59,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106992, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 125722, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 168554, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 170772, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 194586, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Name
@@ -79,7 +79,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 194586, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 463086, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_RootOrder
@@ -131,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6325036225808157799, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a862ba583d75a834da6fe74054b4328b, type: 3}
@@ -163,19 +163,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 139178, guid: 6b3488aa97f1d514d8a4fa45cc3b2dad, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 144340, guid: 6b3488aa97f1d514d8a4fa45cc3b2dad, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 189204, guid: 6b3488aa97f1d514d8a4fa45cc3b2dad, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 190960, guid: 6b3488aa97f1d514d8a4fa45cc3b2dad, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 431590, guid: 6b3488aa97f1d514d8a4fa45cc3b2dad, type: 3}
       propertyPath: m_RootOrder

@@ -72,6 +72,7 @@ public class SurfaceImpulser : MonoBehaviour
                 //RoundVector(ref pointingTo);
 
                 player.AddImpulse(new Impulse(pointingTo.normalized, impulseStrength));
+                aimParticleHandler.BlastParticles(cameraTransform.position - pointingTo, pointingTo);
                 player.ResetGravity();
             }
         }
@@ -91,11 +92,16 @@ public class SurfaceImpulser : MonoBehaviour
     bool GetVectorToPointedSurface(out Vector3 pointingTo)
     {
         RaycastHit collisionPoint;
-
-        if(Physics.Raycast(cameraTransform.transform.position, cameraTransform.forward, out collisionPoint))
+        var layerMask = ~(1 << 7);
+        if(Physics.Raycast(cameraTransform.transform.position, cameraTransform.forward, out collisionPoint, Mathf.Infinity, layerMask))
         {
-            pointingTo = cameraTransform.transform.position - collisionPoint.point;
-            return true;
+            if(collisionPoint.collider.gameObject.tag != "Player")
+            {
+                pointingTo = cameraTransform.transform.position - collisionPoint.point;
+                Debug.Log(collisionPoint.collider.gameObject.name);
+                Debug.Log(collisionPoint.collider);
+                return true;
+            }
         }
 
         pointingTo = Vector3.zero;

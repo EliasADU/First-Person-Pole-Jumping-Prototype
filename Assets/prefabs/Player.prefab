@@ -64,7 +64,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7743791186142200531}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 2.01, z: 1}
   m_Children: []
   m_Father: {fileID: 7743791186215998233}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 7743791186215998230}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,13 +303,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.85
+  m_Height: 4.71
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.21, z: 0}
 --- !u!114 &7743791186215998234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13956fd116cf7ff4d844a77217cb8190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimingParticlesPrefab: {fileID: 5529572086668968894, guid: 294df17cbeff2a94197a6c648b994d71, type: 3}
+  aimingParticlesPrefab: {fileID: 8074400871437686489, guid: e4698e15394b0fa4dba22a80b3a7506f, type: 3}
+  blastParticlesPrefab: {fileID: 2725781009892717788, guid: 74d3c1c5bacdcde4e9bbed0c04587cba, type: 3}
 --- !u!114 &7743791186215998230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875270693028758024, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6540061452467591346, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
       propertyPath: m_RootOrder
@@ -693,7 +694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875270693028758024, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6540061452467591346, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
       propertyPath: m_RootOrder
