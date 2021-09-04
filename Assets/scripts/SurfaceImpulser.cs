@@ -98,8 +98,6 @@ public class SurfaceImpulser : MonoBehaviour
             if(collisionPoint.collider.gameObject.tag != "Player")
             {
                 pointingTo = cameraTransform.transform.position - collisionPoint.point;
-                Debug.Log(collisionPoint.collider.gameObject.name);
-                Debug.Log(collisionPoint.collider);
                 return true;
             }
         }

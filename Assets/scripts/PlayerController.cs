@@ -23,7 +23,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float minDownwardVelocity;
 
+    [SerializeField]
+    float miniImpulseWeight;
+
+    [SerializeField]
+    float miniImpulseStrength;
+
     List<Impulse> currentImpulses;
+
+    Vector3 lockedwasdMove;
+    bool locked;
 
     // Start is called before the first frame update
     void Start()
@@ -40,15 +49,20 @@ public class PlayerController : MonoBehaviour
         ClearFinishedImpulses();
     }
 
-    public void AddImpulse(Impulse i)
+    public void AddImpulse(Impulse i, bool isSurfaceBounce = true)
     {
         currentImpulses.Add(i);
+        if (isSurfaceBounce)
+        {
+            locked = false;
+        }
     }
 
-    //Aggregates all movement on the player, including impulses and applies to gameobject using the character controller
+    //Aggregates all movement on the player, including
+    //impulses and applies to gameobject using the
+    //character controller
     private void Move()
     {
-
         ////VERTICAL MOVEMENT////
 
         if (characterController.isGrounded || verticalSpeed >= 0)
@@ -71,14 +85,40 @@ public class PlayerController : MonoBehaviour
         Vector3 wasdMove = wasdDirection * speed;
 
 
+        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded)
+        {
+            AddImpulse(getMiniImpulse());
+            lockedwasdMove = wasdMove;
+            ResetGravity();
+            locked = true;
+        }
+        if (characterController.isGrounded)
+        {
+            locked = false;
+        }
+        if (locked)
+        {
+            wasdMove = new Vector3(lockedwasdMove.x + wasdMove.x / 2, lockedwasdMove.y + wasdMove.y / 2, lockedwasdMove.z + wasdMove.z / 2); 
+        }
+
         ////TOTAL FROM IMPULSES////
         
         Vector3 impulseMove = GetNetImpulse();
 
-
         ////AGGREGATING ALL OTHERS////
         
         characterController.Move((speed * Time.deltaTime * wasdMove) + (gravityMove * Time.deltaTime) + (impulseMove * Time.deltaTime));
+    }
+
+    //Mini Impulse is an impulse that imitates a "lunge",
+    //takes current player WASD raw input plus some
+    //vertical movement
+    Impulse getMiniImpulse()
+    {
+        Vector3 miniImpulseDirection = (transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"));
+
+        miniImpulseDirection.y = miniImpulseWeight;
+        return new Impulse(miniImpulseDirection, miniImpulseStrength);
     }
 
     public void ResetGravity()
