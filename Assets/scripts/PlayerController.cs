@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     float speed;
 
     [SerializeField]
-    float verticalSpeed;
+    float gravitationalSpeed;
 
     [SerializeField]
     float gravity;
@@ -65,16 +65,16 @@ public class PlayerController : MonoBehaviour
     {
         ////VERTICAL MOVEMENT////
 
-        if (characterController.isGrounded || verticalSpeed >= 0)
+        if (characterController.isGrounded || gravitationalSpeed >= 0)
         {
-            verticalSpeed = minDownwardVelocity;
+            gravitationalSpeed = minDownwardVelocity;
         }
         else
         {
-            verticalSpeed -= gravity * Time.deltaTime;
+            gravitationalSpeed -= gravity * Time.deltaTime;
         }
 
-        Vector3 gravityMove = new Vector3(0, verticalSpeed, 0);
+        Vector3 gravityMove = new Vector3(0, gravitationalSpeed, 0);
 
         ////WASD MOVEMENT////
         
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         ////AGGREGATING ALL OTHERS////
         
-        characterController.Move((speed * Time.deltaTime * wasdMove) + (gravityMove * Time.deltaTime) + (impulseMove * Time.deltaTime));
+        characterController.Move((Time.deltaTime * wasdMove) + (gravityMove * Time.deltaTime) + (impulseMove * Time.deltaTime));
     }
 
     //Mini Impulse is an impulse that imitates a "lunge",
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetGravity()
     {
-        verticalSpeed = 0;
+        gravitationalSpeed = 0;
     }
 
     void ClearFinishedImpulses()
