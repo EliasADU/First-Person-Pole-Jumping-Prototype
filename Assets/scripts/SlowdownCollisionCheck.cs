@@ -35,7 +35,7 @@ public class SlowdownCollisionCheck : MonoBehaviour
             //use the direction the player is facing to create an impulse that pushes the player backwards
             //this ultimately slows the player down
             Vector3 direction = controller.transform.forward;
-            controller.AddImpulse(new Impulse(direction, -8));
+            controller.AddImpulse(new Impulse(-direction, 2));
             timeAtSlowDownCollision = Time.realtimeSinceStartup;
             slowDownIntervalCounter++;
         }
@@ -53,7 +53,7 @@ public class SlowdownCollisionCheck : MonoBehaviour
                 slowDownIntervalCounter++;
                 Vector3 direction = controller.transform.forward;
                 slowDownTimer = 0;
-                controller.AddImpulse(new Impulse(direction, -8));
+                controller.AddImpulse(new Impulse(-direction, 2));
             }
         }
     }
@@ -65,7 +65,7 @@ public class SlowdownCollisionCheck : MonoBehaviour
             //use the direction the player is facing to create an impulse that pushes the player backwards
             //this ultimately slows the player down
             Vector3 direction = controller.transform.forward;
-            controller.AddImpulse(new Impulse(direction, -(5 + slowDownIntervalCounter)));
+            controller.AddImpulse(new Impulse(-direction, (2 + slowDownIntervalCounter)));
             slowDownTimer = 0;
             slowDownIntervalCounter = 0;
         }
