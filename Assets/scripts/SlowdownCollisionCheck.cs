@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SlowdownCollisionCheck : MonoBehaviour
 {
-
     [SerializeField]
     PlayerController controller;
+
+    [SerializeField]
+    CharacterController chController;
+
+    [SerializeField]
+    float slowDownParameter;
 
     float slowDownTimer;
     float timeAtSlowDownCollision;
@@ -28,14 +33,15 @@ public class SlowdownCollisionCheck : MonoBehaviour
         
     }
 
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Slowdown")
         {
-            //use the direction the player is facing to create an impulse that pushes the player backwards
-            //this ultimately slows the player down
-            Vector3 direction = controller.transform.forward;
-            controller.AddImpulse(new Impulse(-direction, 2));
+            Vector3 cV = chController.velocity;
+            Vector3.Normalize(cV);
+
+            controller.AddImpulse(new Impulse(-cV, slowDownParameter));
+
             timeAtSlowDownCollision = Time.realtimeSinceStartup;
             slowDownIntervalCounter++;
         }
@@ -48,26 +54,26 @@ public class SlowdownCollisionCheck : MonoBehaviour
             slowDownTimer += Time.realtimeSinceStartup - timeAtSlowDownCollision;
             if(slowDownTimer >= slowDownInterval)
             {
-                //use the direction the player is facing to create an impulse that pushes the player backwards
-                //this ultimately slows the player down
                 slowDownIntervalCounter++;
-                Vector3 direction = controller.transform.forward;
+                Vector3 cV = chController.velocity;
+                Vector3.Normalize(cV);
+                controller.AddImpulse(new Impulse(-cV, slowDownParameter));
                 slowDownTimer = 0;
-                controller.AddImpulse(new Impulse(-direction, 2));
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Slowbdown")
+        if (other.transform.tag == "Slowdown")
         {
-            //use the direction the player is facing to create an impulse that pushes the player backwards
-            //this ultimately slows the player down
-            Vector3 direction = controller.transform.forward;
-            controller.AddImpulse(new Impulse(-direction, (2 + slowDownIntervalCounter)));
+            Vector3 cV = chController.velocity;
+            Vector3.Normalize(cV);
+            controller.AddImpulse(new Impulse(-cV, slowDownParameter));
+
             slowDownTimer = 0;
             slowDownIntervalCounter = 0;
         }
     }
 }
+
