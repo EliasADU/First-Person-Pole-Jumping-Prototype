@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4930065227004090}
   - component: {fileID: 33447548732736480}
   - component: {fileID: 23607296794675226}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 678455947018268867}
   - {fileID: 4613438521300541045}
-  - {fileID: 1192437809673397043}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,7 +95,7 @@ GameObject:
   - component: {fileID: 4613438521300541045}
   - component: {fileID: 423779294355330668}
   - component: {fileID: 3355143751522416037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4926,7 +4925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678455947018268867}
   - component: {fileID: 484131645682858621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5009,33 +5008,3 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &8435128734690120848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1192437809673397043}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1192437809673397043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8435128734690120848}
-  m_LocalRotation: {x: 0.03044701, y: 0.018090617, z: -0.004322191, w: 0.9993633}
-  m_LocalPosition: {x: 0.0008, y: 0.5815, z: -0.1068}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4930065227004090}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 3.498, y: 2.061, z: -0.433}
