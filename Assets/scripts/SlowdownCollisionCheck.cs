@@ -6,9 +6,9 @@ public class SlowdownCollisionCheck : MonoBehaviour
 {
     [SerializeField]
     PlayerController controller;
-
+    
     [SerializeField]
-    CharacterController chController;
+    CharacterController characterController;
 
     [SerializeField]
     float slowDownParameter;
@@ -37,7 +37,7 @@ public class SlowdownCollisionCheck : MonoBehaviour
     {
         if(other.transform.tag == "Slowdown")
         {
-            Vector3 cV = chController.velocity;
+            Vector3 cV = characterController.velocity;
             Vector3.Normalize(cV);
 
             controller.AddImpulse(new Impulse(-cV, slowDownParameter));
@@ -55,7 +55,7 @@ public class SlowdownCollisionCheck : MonoBehaviour
             if(slowDownTimer >= slowDownInterval)
             {
                 slowDownIntervalCounter++;
-                Vector3 cV = chController.velocity;
+                Vector3 cV = characterController.velocity;
                 Vector3.Normalize(cV);
                 controller.AddImpulse(new Impulse(-cV, slowDownParameter));
                 slowDownTimer = 0;
@@ -67,7 +67,7 @@ public class SlowdownCollisionCheck : MonoBehaviour
     {
         if (other.transform.tag == "Slowdown")
         {
-            Vector3 cV = chController.velocity;
+            Vector3 cV = characterController.velocity;
             Vector3.Normalize(cV);
             controller.AddImpulse(new Impulse(-cV, slowDownParameter));
 

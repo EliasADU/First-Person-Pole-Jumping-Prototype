@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour
     Vector3 lockedwasdMove;
     bool locked;
 
+    //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
+    [SerializeField]
+    float cooldownPeriod;
+
+    float timeSinceBoost;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +53,9 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         ClearFinishedImpulses();
+
+        //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
+        timeSinceBoost += Time.deltaTime;
     }
 
     public void AddImpulse(Impulse i, bool isSurfaceBounce = true)
@@ -85,12 +94,16 @@ public class PlayerController : MonoBehaviour
         Vector3 wasdMove = wasdDirection * speed;
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded)
+        //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
+        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && timeSinceBoost >= cooldownPeriod)
         {
             AddImpulse(getMiniImpulse());
             lockedwasdMove = wasdMove;
             ResetGravity();
             locked = true;
+
+            //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
+            timeSinceBoost = 0;
         }
         if (characterController.isGrounded)
         {

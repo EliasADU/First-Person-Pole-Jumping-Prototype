@@ -57,7 +57,6 @@ public class SpeedboostCollisionCheck : MonoBehaviour
     {
         if (other.transform.tag == "Speedboost")
         {
-            Debug.Log(5 * speedBoostIntervalCounter * 2);
             Vector3 direction = other.transform.forward;
             controller.AddImpulse(new Impulse(direction, 5 + speedBoostIntervalCounter));
             speedBoostTimer = 0;
