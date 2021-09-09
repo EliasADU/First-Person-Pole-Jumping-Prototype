@@ -5,9 +5,6 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
-    //As of August 26th the bulk of this script is retrieved from https://itnext.io/how-to-write-a-simple-3d-character-controller-in-unity-1a07b954a4ca
-    //With added comments
-
     [SerializeField]
     CharacterController characterController;
 
@@ -29,14 +26,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float miniImpulseStrength;
 
+
+    //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
+    [SerializeField]
+    float cooldownPeriod;
+
     List<Impulse> currentImpulses;
 
     Vector3 lockedwasdMove;
     bool locked;
 
-    //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
-    [SerializeField]
-    float cooldownPeriod;
 
     float timeSinceBoost;
 
