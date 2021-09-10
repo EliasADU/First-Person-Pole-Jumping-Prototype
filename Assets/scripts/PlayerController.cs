@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float miniImpulseStrength;
 
+    [SerializeField]
+    RecoveryMeter recoveryMeter;
+
+    [SerializeField]
+    ImpulseCharges impulseCharges;
+
 
     //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
     [SerializeField]
@@ -66,6 +72,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool AccurateIsGrounded()
+    {
+        return (characterController.isGrounded || gravitationalSpeed > 0);
+    }
+
     //Aggregates all movement on the player, including
     //impulses and applies to gameobject using the
     //character controller
@@ -94,9 +105,12 @@ public class PlayerController : MonoBehaviour
 
 
         //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
-        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && timeSinceBoost >= cooldownPeriod)
+        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && timeSinceBoost >= cooldownPeriod && recoveryMeter.CanRecover())
         {
             AddImpulse(getMiniImpulse());
+            impulseCharges.Recharge();
+            recoveryMeter.ImpulsedSubtraction();
+
             lockedwasdMove = wasdMove;
             ResetGravity();
             locked = true;

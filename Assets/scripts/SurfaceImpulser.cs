@@ -11,10 +11,16 @@ public class SurfaceImpulser : MonoBehaviour
     Transform cameraTransform;
 
     [SerializeField]
+    PlayerController playerController;
+
+    [SerializeField]
     float maxImpulseDistance;
 
     [SerializeField]
     float impulseStrength;
+
+    [SerializeField]
+    ImpulseCharges impulseChargesSetter;
 
     [SerializeField]
     AimParticleHandler aimParticleHandler;
@@ -22,18 +28,27 @@ public class SurfaceImpulser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ResetChargesIfGrounded();
         //returns true during the frame user has pressed left click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && impulseChargesSetter.HasChargesLeft())
         {
             ImpulseIfPossible();
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && impulseChargesSetter.HasChargesLeft())
         {
             SetAimParticles();
         }
         else
         {
             aimParticleHandler.StopParticles();
+        }
+    }
+
+    void ResetChargesIfGrounded()
+    {
+        if (playerController.AccurateIsGrounded())
+        {
+            impulseChargesSetter.ResetCharges();
         }
     }
 
@@ -69,23 +84,12 @@ public class SurfaceImpulser : MonoBehaviour
         {
             if(pointingTo.magnitude <= maxImpulseDistance)
             {
-                //RoundVector(ref pointingTo);
-
                 player.AddImpulse(new Impulse(pointingTo.normalized, impulseStrength));
+                impulseChargesSetter.SpendCharge();
                 aimParticleHandler.BlastParticles(cameraTransform.position - pointingTo, pointingTo);
                 player.ResetGravity();
             }
         }
-    }
-
-    void RoundVector(ref Vector3 v)
-    {
-        Spherical s = new Spherical(v);
-
-        s.theta = Mathf.Round(s.theta / (Mathf.PI / 4));
-        s.phi = Mathf.Round(s.phi / (Mathf.PI / 4));
-
-        v = s.InCartesian();
     }
 
     //Raycasts to nearest surface and returns Vector3 representing straight line to point from player
