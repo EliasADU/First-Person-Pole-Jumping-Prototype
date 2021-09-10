@@ -18,7 +18,6 @@ public class Lockscreen : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             group.SetActive(true);
-            Debug.Log("test");
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
