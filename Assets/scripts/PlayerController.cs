@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
 
     float timeSinceBoost;
 
+    private void Awake()
+    {
+        References.player = gameObject;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {

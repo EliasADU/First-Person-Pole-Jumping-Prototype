@@ -5,13 +5,14 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject player;
     public float MoveSpeed = 4f;
     public float MaxDist;
     public float MinDist;
     public float damage;
     Transform Player;
     public float visionRange;
+    private Vector3 randomNavPoint;
+    private float minDistanceNavPoint = 2f;
     private bool alerted;
     public float visionConeAngle;
     private LayerMask layerMask;
@@ -24,68 +25,30 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         //initalize player to transform b/c easier to manipulate than controller.
-        Player = player.transform;
-
+        Player = References.player.transform;
         alerted = false;
+        GoToRandomNavPoint();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Doesn't go down to player's Y Axis Level
-        if (Player != null)
-        {
-            Debug.Log(Vector3.Distance(transform.position, Player.position));
-            Vector3 vectorToPlayer = Player.position - transform.position;
-
-            //Guard Alerted
-            if (alerted)
-            {
-                //if enemy is looking at a player and there is a wall
-                if (Physics.Raycast(transform.position, vectorToPlayer, vectorToPlayer.magnitude, layerMask))
-                {
-                    //Fly Upwards but don't move towards player
-                    transform.position += transform.up * MoveSpeed * Time.deltaTime;
-                }
-                else
-                {
-
-                    transform.LookAt(Player); //look at player
-                    //Debug.Log(Vector3.Distance(transform.position, Player.position)); //Debug
-
-                    if (Vector3.Distance(transform.position, Player.position) <= MaxDist) // Check if player is still within chasing distance
-                    {
-                        if (Vector3.Distance(transform.position, Player.position) >= MinDist) // Check if player is still within attacking range long range attack enemy
-                        {
-                            transform.position += transform.forward * MoveSpeed * Time.deltaTime; // Move towards player
-                        }
-                    }
-                }
-
-            }
-            else
-            {
-                if (Vector3.Distance(transform.position, Player.position) <= visionRange) // if player is within enemy vision range
-                {
-                    if (Vector3.Angle(transform.forward, vectorToPlayer) <= visionConeAngle) // And player is within cone of vision
-                    {
-                        if (!Physics.Raycast(transform.position, vectorToPlayer, vectorToPlayer.magnitude, layerMask)) // make sure it sees player but not through a wall
-                        {
-                            alerted = true;
-                        }
-                    }
-                }
-            }
-        }
+        ChasePlayer();
     }
 
+    private void GoToRandomNavPoint()
+    {
+        int randomRange = Random.Range(0, References.navPoints.Count);
+        randomNavPoint = References.navPoints[randomRange].transform.position;
+    }
     public void ChasePlayer()
     {
         //Doesn't go down to player's Y Axis Level
         if (Player != null)
         {
-            Debug.Log(Vector3.Distance(transform.position, Player.position));
-            Vector3 vectorToPlayer = Player.position - transform.position;
+            //Debug.Log(Vector3.Distance(transform.position, Player.position));
+            Vector3 vectorToPlayer = Player.position - transform.position; //find player's position from enemy
+            Vector3 moveTowardsPlayer = transform.forward * MoveSpeed * Time.deltaTime;
 
             //Guard Alerted
             if (alerted)
@@ -106,7 +69,7 @@ public class Enemy : MonoBehaviour
                     {
                         if (Vector3.Distance(transform.position, Player.position) >= MinDist) // Check if player is still within attacking range long range attack enemy
                         {
-                            transform.position += transform.forward * MoveSpeed * Time.deltaTime; // Move towards player
+                            transform.position += moveTowardsPlayer; // Move towards player
                         }
                     }
                 }
@@ -114,6 +77,15 @@ public class Enemy : MonoBehaviour
             }
             else
             {
+                if (Vector3.Distance(transform.position, randomNavPoint) >= minDistanceNavPoint) // Check if player is still within attacking range long range attack enemy
+                {
+                    transform.LookAt(randomNavPoint); // look at random navigation point
+                    transform.position += moveTowardsPlayer; //move random navigation point
+                }
+                else
+                {
+                    GoToRandomNavPoint();
+                }
                 if (Vector3.Distance(transform.position, Player.position) <= visionRange) // if player is within enemy vision range
                 {
                     if (Vector3.Angle(transform.forward, vectorToPlayer) <= visionConeAngle) // And player is within cone of vision
