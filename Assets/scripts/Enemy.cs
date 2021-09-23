@@ -38,8 +38,11 @@ public class Enemy : MonoBehaviour
 
     private void GoToRandomNavPoint()
     {
-        int randomRange = Random.Range(0, References.navPoints.Count);
-        randomNavPoint = References.navPoints[randomRange].transform.position;
+        if(References.navPoints.Count > 0)
+        {
+            int randomRange = Random.Range(0, References.navPoints.Count);
+            randomNavPoint = References.navPoints[randomRange].transform.position;
+        }
     }
     public void ChasePlayer()
     {
@@ -77,14 +80,17 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (Vector3.Distance(transform.position, randomNavPoint) >= minDistanceNavPoint) // Check if player is still within attacking range long range attack enemy
+                if(References.navPoints.Count > 0)
                 {
-                    transform.LookAt(randomNavPoint); // look at random navigation point
-                    transform.position += moveTowardsPlayer; //move random navigation point
-                }
-                else
-                {
-                    GoToRandomNavPoint();
+                    if (Vector3.Distance(transform.position, randomNavPoint) >= minDistanceNavPoint) // Check if player is still within attacking range long range attack enemy
+                    {
+                        transform.LookAt(randomNavPoint); // look at random navigation point
+                        transform.position += moveTowardsPlayer; //move random navigation point
+                    }
+                    else
+                    {
+                        GoToRandomNavPoint();
+                    }
                 }
                 if (Vector3.Distance(transform.position, Player.position) <= visionRange) // if player is within enemy vision range
                 {
