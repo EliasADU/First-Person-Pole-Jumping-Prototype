@@ -44,14 +44,6 @@ public class AimReticleBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Activate(false);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Activate(true);
-        }
         SizeToTarget();
         ColorToTarget();
     }
