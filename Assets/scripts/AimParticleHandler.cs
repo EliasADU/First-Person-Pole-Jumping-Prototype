@@ -21,7 +21,7 @@ public class AimParticleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aimingParticles = Instantiate(aimingParticlesPrefab, Vector3.zero, Quaternion.identity);
+        //aimingParticles = Instantiate(aimingParticlesPrefab, Vector3.zero, Quaternion.identity);
         
     }
 

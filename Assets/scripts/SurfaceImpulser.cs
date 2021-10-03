@@ -17,10 +17,19 @@ public class SurfaceImpulser : MonoBehaviour
     float maxImpulseDistance;
 
     [SerializeField]
+    float maxPullDistance;
+
+    [SerializeField]
     float impulseStrength;
 
     [SerializeField]
+    float pullStrength;
+
+    [SerializeField]
     ImpulseCharges impulseChargesSetter;
+
+    [SerializeField]
+    AimReticleBehavior reticleBehavior;
 
     [SerializeField]
     AimParticleHandler aimParticleHandler;
@@ -30,17 +39,23 @@ public class SurfaceImpulser : MonoBehaviour
     {
         ResetChargesIfGrounded();
         //returns true during the frame user has pressed left click
-        if (Input.GetMouseButtonDown(0) && impulseChargesSetter.HasChargesLeft())
+        if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            ImpulseIfPossible();
-        }
-        if (Input.GetMouseButton(1) && impulseChargesSetter.HasChargesLeft())
-        {
+            //This will only set if valid distance to surface and enough charges
             SetAimParticles();
         }
         else
         {
-            aimParticleHandler.StopParticles();
+            reticleBehavior.Activate(false);
+        }
+
+        if (Input.GetMouseButtonUp(0) && impulseChargesSetter.HasChargesLeft())
+        {
+            ImpulseIfPossible(true);
+        }
+        else if (Input.GetMouseButtonUp(1) && impulseChargesSetter.HasChargesLeft())
+        {
+            ImpulseIfPossible(false);
         }
     }
 
@@ -59,22 +74,27 @@ public class SurfaceImpulser : MonoBehaviour
         //Executes only if collided with a surface
         if (GetVectorToPointedSurface(out pointingTo))
         {
-            if (pointingTo.magnitude <= maxImpulseDistance)
+            float validDistance = maxImpulseDistance;
+            if (Input.GetMouseButton(1))
             {
-                aimParticleHandler.UpdateParticles(cameraTransform.position - pointingTo, pointingTo);
+                validDistance = maxPullDistance;
+            }
+            if (pointingTo.magnitude <= validDistance)
+            {
+                reticleBehavior.Activate(true);
             }
             else
             {
-                aimParticleHandler.StopParticles();
+                reticleBehavior.Activate(false);
             }
         }
         else
         {
-            aimParticleHandler.StopParticles();
+            reticleBehavior.Activate(false);
         }
     }
 
-    void ImpulseIfPossible()
+    void ImpulseIfPossible(bool isPush)
     {
 
         Vector3 pointingTo = new Vector3();
@@ -82,8 +102,21 @@ public class SurfaceImpulser : MonoBehaviour
         //Executes only if collided with a surface
         if (GetVectorToPointedSurface(out pointingTo))
         {
-            if(pointingTo.magnitude <= maxImpulseDistance)
+            float validDistance = maxImpulseDistance;
+            if (!isPush)
             {
+                validDistance = maxPullDistance;
+            }
+
+            if(pointingTo.magnitude <= validDistance)
+            {
+                float strength = impulseStrength;
+                if (!isPush)
+                {
+                    //it is a pull
+                    pointingTo = -pointingTo;
+                    strength = pullStrength;
+                }
                 player.AddImpulse(new Impulse(pointingTo.normalized, impulseStrength));
                 impulseChargesSetter.SpendCharge();
                 aimParticleHandler.BlastParticles(cameraTransform.position - pointingTo, pointingTo);
