@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float miniImpulseStrength;
 
-
     //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
     [SerializeField]
     float cooldownPeriod;
