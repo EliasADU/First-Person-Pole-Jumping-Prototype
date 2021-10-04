@@ -14,7 +14,7 @@ public class FPObjectWeights : MonoBehaviour
     GameObject cameraObject;
 
     [SerializeField]
-    GameObject staff1;
+    GameObject allObjects;
 
     float targetXRotation;
     float targetYRotation;
@@ -40,22 +40,17 @@ public class FPObjectWeights : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        staff1.transform.position = Vector3.Lerp(staff1.transform.position, 
-            cameraObject.transform.position + (Quaternion.Euler(0, targetYRotation, 0) * new Vector3(holdSide, holdHeight, holdDepth)), 
+        allObjects.transform.position = Vector3.Lerp(allObjects.transform.position,
+            cameraObject.transform.position + (Quaternion.Euler(0, targetYRotation, 0) * new Vector3(holdSide, holdHeight, holdDepth)),
             Time.deltaTime * moveSpeed);
 
-        staff1.transform.rotation = Quaternion.Euler(Mathf.LerpAngle(staff1.transform.rotation.eulerAngles.x, cameraObject.transform.rotation.eulerAngles.x, Time.deltaTime * rotationSpeed),
-            staff1.transform.rotation.eulerAngles.y,
-            staff1.transform.rotation.eulerAngles.z);
+        allObjects.transform.rotation = Quaternion.Euler(allObjects.transform.rotation.eulerAngles.x,
+            Mathf.LerpAngle(allObjects.transform.rotation.eulerAngles.y, cameraObject.transform.rotation.eulerAngles.y, Time.deltaTime * rotationSpeed),
+            allObjects.transform.rotation.eulerAngles.z);
 
-        staff1.transform.rotation = Quaternion.Euler(staff1.transform.rotation.eulerAngles.x,
-            Mathf.LerpAngle(staff1.transform.rotation.eulerAngles.y, cameraObject.transform.rotation.eulerAngles.y, Time.deltaTime * rotationSpeed),
-            staff1.transform.rotation.eulerAngles.z);
-
-    }
-
-    void GetXRotationDueToWeight()
-    {
+        allObjects.transform.rotation = Quaternion.Euler(Mathf.LerpAngle(allObjects.transform.rotation.eulerAngles.x, cameraObject.transform.rotation.eulerAngles.x, Time.deltaTime * rotationSpeed),
+            allObjects.transform.rotation.eulerAngles.y,
+            allObjects.transform.rotation.eulerAngles.z);
 
     }
 }

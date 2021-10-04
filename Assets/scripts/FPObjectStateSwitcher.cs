@@ -15,15 +15,15 @@ public class FPObjectStateSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
-        {
-            state = 1;
-        }
-        else
-        {
-            state = 0;
-        }
-        SwitchStates();
+        //if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
+        //{
+        //    state = 1;
+        //}
+        //else
+        //{
+        //    state = 0;
+        //}
+        //SwitchStates();
     }
 
     void SwitchStates()
