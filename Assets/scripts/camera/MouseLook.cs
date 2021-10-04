@@ -13,6 +13,8 @@ public class MouseLook : MonoBehaviour
     private Quaternion _playerTargetRot;
     private Quaternion _cameraTargetRot;
 
+    public Vector2 rotation { get { return _rotation; } }
+
     private void Start()
     {
         _playerTransform = transform;
