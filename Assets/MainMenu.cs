@@ -7,9 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     public void NewGame()
     {
-        //SceneManager.LoadScene("testing_grace 1")
+        SceneManager.LoadScene("testing");
         //any testing scene can be put here
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             //plays next scene in file/build settings
     }
     public void LoadGame()
