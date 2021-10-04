@@ -47,6 +47,14 @@ public class FPStaffSpin : MonoBehaviour
     ParticleSystem darkSlash;
     [SerializeField]
     ParticleSystem fireSlash;
+    [SerializeField]
+    ParticleSystem darkSlash1;
+    [SerializeField]
+    ParticleSystem fireSlash1;
+    [SerializeField]
+    ParticleSystem darkBeam;
+    [SerializeField]
+    ParticleSystem fireBeam;
 
     // Start is called before the first frame update
     void Start()
@@ -75,19 +83,21 @@ public class FPStaffSpin : MonoBehaviour
     {
         if(state != s)
         {
-            darkSlash.Play();
-            fireSlash.Play();
 
             state = s;
             heightT = 0;
             rotationT = 0;
             if (state)
             {
+                darkSlash.Play();
+                fireSlash.Play();
                 targetSpinRotation = targetend;
                 targetHeight = finalHeightOffset;
             }
             else
             {
+                darkSlash1.Play();
+                fireSlash1.Play();
                 targetSpinRotation = targetstart;
                 targetHeight = startHeightOffset;
             }
