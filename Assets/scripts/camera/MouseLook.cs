@@ -46,6 +46,13 @@ public class MouseLook : MonoBehaviour
             _rotation.y = Input.GetAxisRaw("Mouse Y") * Sensitivity;
 
             _playerTargetRot *= Quaternion.Euler(0f, _rotation.x, 0f);
+
+            _cameraTargetRot *= Quaternion.Euler(-_rotation.y, 0f, 0f);
+
+            _cameraTargetRot = LockCameraMovement(_cameraTargetRot);
+
+            _playerTransform.localRotation = _playerTargetRot;
+            CameraTransform.localRotation = Quaternion.Euler(_cameraTargetRot.eulerAngles.x, _cameraTargetRot.eulerAngles.y, CameraTransform.localRotation.eulerAngles.z);
             _playerTargetRot *= Quaternion.Euler(0f, _rotation.x, 0f);
 
             _cameraTargetRot *= Quaternion.Euler(-_rotation.y, 0f, 0f);
