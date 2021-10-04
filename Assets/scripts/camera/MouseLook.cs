@@ -15,26 +15,32 @@ public class MouseLook : MonoBehaviour
 
     public Vector2 rotation { get { return _rotation; } }
 
+    public bool cameraMovementIsEnabled { get; set; }
+
     private void Start()
     {
         _playerTransform = transform;
         _playerTargetRot = _playerTransform.rotation;
         _cameraTargetRot = CameraTransform.rotation;
+        cameraMovementIsEnabled = true;
     }
 
     private void Update()
     {
-        _rotation.x = Input.GetAxisRaw("Mouse X") * Sensitivity;
-        _rotation.y = Input.GetAxisRaw("Mouse Y") * Sensitivity;
+        if (cameraMovementIsEnabled)
+        {
+            _rotation.x = Input.GetAxisRaw("Mouse X") * Sensitivity;
+            _rotation.y = Input.GetAxisRaw("Mouse Y") * Sensitivity;
 
-        _playerTargetRot *= Quaternion.Euler(0f, _rotation.x, 0f);
+            _playerTargetRot *= Quaternion.Euler(0f, _rotation.x, 0f);
 
-        _cameraTargetRot *= Quaternion.Euler(-_rotation.y, 0f, 0f);
+            _cameraTargetRot *= Quaternion.Euler(-_rotation.y, 0f, 0f);
 
-        _cameraTargetRot = LockCameraMovement(_cameraTargetRot);
+            _cameraTargetRot = LockCameraMovement(_cameraTargetRot);
 
-        _playerTransform.localRotation = _playerTargetRot;
-        CameraTransform.localRotation = Quaternion.Euler(_cameraTargetRot.eulerAngles.x, _cameraTargetRot.eulerAngles.y, CameraTransform.localRotation.eulerAngles.z);
+            _playerTransform.localRotation = _playerTargetRot;
+            CameraTransform.localRotation = Quaternion.Euler(_cameraTargetRot.eulerAngles.x, _cameraTargetRot.eulerAngles.y, CameraTransform.localRotation.eulerAngles.z);
+        }
     }
 
     private Quaternion LockCameraMovement(Quaternion q)
