@@ -64,7 +64,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.068
     - _GlossyReflections: 1
-    - _InvFade: 0.67
+    - _InvFade: 0.918
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -77,5 +77,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 0.6181818, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 0.3018868, g: 0.22465937, b: 0.07518689, a: 0.5019608}
+    - _TintColor: {r: 0.6039216, g: 0.4509804, b: 0.019607844, a: 1}
   m_BuildTextureStacks: []
