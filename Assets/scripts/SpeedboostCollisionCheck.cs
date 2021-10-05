@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//class to apply a speedboost to a player when they enter a speedboost region
 public class SpeedboostCollisionCheck : MonoBehaviour
 {
+    //reference to player controller
     [SerializeField]
     PlayerController controller;
 
+    //variables used to keep track of the speedboost
     float speedBoostTimer;
     float timeAtSpeedBoostCollision;
     float speedBoostIntervalCounter;
 
+    //reference for the speedBoost interval
     [SerializeField]
     float speedBoostInterval;
 
@@ -27,10 +31,13 @@ public class SpeedboostCollisionCheck : MonoBehaviour
         
     }
 
+    //when the player enters a speedboost region
     private void OnTriggerEnter(Collider other)
     {
+        //entered speedboost region
         if(other.transform.tag == "Speedboost")
         {
+            //add an forward impulse
             Vector3 direction = other.transform.forward;
             controller.AddImpulse(new Impulse(direction, 5));
             timeAtSpeedBoostCollision = Time.realtimeSinceStartup;
@@ -38,8 +45,10 @@ public class SpeedboostCollisionCheck : MonoBehaviour
         }
     }
 
+    //while the player remains in the speedboost region
     private void OnTriggerStay(Collider other)
     {
+        //in the speedboost region
         if(other.transform.tag == "Speedboost")
         {
             speedBoostTimer += Time.realtimeSinceStartup - timeAtSpeedBoostCollision;
@@ -53,6 +62,7 @@ public class SpeedboostCollisionCheck : MonoBehaviour
         }
     }
 
+    //when player exits the speedboost region
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Speedboost")
