@@ -10,14 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3d827f991e9a47ec9a27086690324aa, type: 3}
-  m_Name: Testing
+  m_Name: No Testing
   m_EditorClassIdentifier: 
   dialogue:
-  - Are you lost?
-  - Cool!
-  - Final test
-  responses:
-  - responseText: Yes
-    dialogueObject: {fileID: 11400000, guid: a224f3cb7551847e78eaac0675c31233, type: 2}
-  - responseText: No
-    dialogueObject: {fileID: 11400000, guid: ad5119485ed1144b1b9530590d70897a, type: 2}
+  - 'Your response: Absolutely NOT!'
+  responses: []
