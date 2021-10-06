@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    MouseLook player;
+    //MouseLook player;
 
     void Update()
     {
@@ -31,7 +31,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        player.cameraMovementIsEnabled=true;
+        //player.cameraMovementIsEnabled=true;
         GameIsPaused = false;
     }
     void Pause()
@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        player.cameraMovementIsEnabled=false;
+        //player.cameraMovementIsEnabled=false;
         GameIsPaused = true;
     }
 
