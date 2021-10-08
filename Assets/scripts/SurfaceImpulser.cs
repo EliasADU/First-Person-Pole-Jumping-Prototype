@@ -39,10 +39,11 @@ public class SurfaceImpulser : MonoBehaviour
     {
         ResetChargesIfGrounded();
         //returns true during the frame user has pressed left click
-        if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             //This will only set if valid distance to surface and enough charges
             SetAimParticles();
+        
         }
         else
         {
@@ -107,20 +108,22 @@ public class SurfaceImpulser : MonoBehaviour
             {
                 validDistance = maxPullDistance;
             }
-
-            if(pointingTo.magnitude <= validDistance)
+            if (Time.timeScale == 1f)
             {
-                float strength = impulseStrength;
-                if (!isPush)
+                if (pointingTo.magnitude <= validDistance)
                 {
-                    //it is a pull
-                    pointingTo = -pointingTo;
-                    strength = pullStrength;
+                    float strength = impulseStrength;
+                    if (!isPush)
+                    {
+                        //it is a pull
+                        pointingTo = -pointingTo;
+                        strength = pullStrength;
+                    }
+                    player.AddImpulse(new Impulse(pointingTo.normalized, impulseStrength));
+                    impulseChargesSetter.SpendCharge();
+                    aimParticleHandler.BlastParticles(cameraTransform.position - pointingTo, pointingTo);
+                    player.ResetGravity();
                 }
-                player.AddImpulse(new Impulse(pointingTo.normalized, impulseStrength));
-                impulseChargesSetter.SpendCharge();
-                aimParticleHandler.BlastParticles(cameraTransform.position - pointingTo, pointingTo);
-                player.ResetGravity();
             }
         }
     }

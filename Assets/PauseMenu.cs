@@ -11,21 +11,17 @@ public class PauseMenu : MonoBehaviour
 
     //MouseLook player;
 
+    //checks every frame if game is paused or not when escape is pressed
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.P))
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
                 Pause();
-            }
+         
         }
     }
 
+    //resume starts the game again
     public void Resume()
     {
         Cursor.visible = false;
@@ -34,6 +30,8 @@ public class PauseMenu : MonoBehaviour
         //player.cameraMovementIsEnabled=true;
         GameIsPaused = false;
     }
+
+    //pause pauses time
     void Pause()
     {
         Cursor.visible = true;
@@ -43,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
+    //loads the main menu scene
     public void LoadMenu()
 
     {
@@ -51,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    //quits out of the game
     public void QuitGame()
     {
         Cursor.visible = true;

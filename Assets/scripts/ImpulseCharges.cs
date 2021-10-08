@@ -30,8 +30,11 @@ public class ImpulseCharges : MonoBehaviour
 
     public void SpendCharge()
     {
-        chargesLeft--;
-        UpdateMarkers();
+        if (Time.timeScale != 0f)
+        {
+            chargesLeft--;
+            UpdateMarkers();
+        }
     }
 
     public void Recharge()

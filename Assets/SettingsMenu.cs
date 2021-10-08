@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    //objects for audio, resolution, and resolution dropdown
     public AudioMixer audioMixer;
     Resolution[] resolutions;
     public Dropdown ResolutionDropdown;
 
-
+    //when the setting menu starts it collects all of the users screens resolutions and places them in the drop down
     private void Start()
     {
         int CurrentResolutionIndex = 0;
@@ -36,24 +37,26 @@ public class SettingsMenu : MonoBehaviour
         ResolutionDropdown.RefreshShownValue();
     }
 
+    //This sets the resolution when one is selected in the dropdown
     public void SetResolution(int ResolutionIndex)
     {
         Resolution resolution = resolutions[ResolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetVolume(float volume)
+    //Sets the volume based off of the slider
+    public void SetVolume(float Volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("Volume", Mathf.Log10(Volume) * 20);
     }
 
-
+    //sets grphics quality based of the dropdown low, medium, or high
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
-
+    //toggles fullscreen for the game
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;

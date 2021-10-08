@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     public void Options()
     {
         //Options
+        //settings has its own script and panel
     }
     public void Quit()
     {
