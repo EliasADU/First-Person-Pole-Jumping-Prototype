@@ -41,13 +41,13 @@ public class FPObjectWeights : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         float blend = 1f - Mathf.Pow(1f - followSharpness, Time.deltaTime * 30f);
 
         allObjects.transform.position = Vector3.Lerp(allObjects.transform.position,
             cameraObject.transform.position + (Quaternion.Euler(0, targetYRotation, 0) * new Vector3(holdSide, holdHeight, holdDepth)), blend);
-        
+
         allObjects.transform.rotation = Quaternion.Euler(allObjects.transform.rotation.eulerAngles.x,
             Mathf.LerpAngle(allObjects.transform.rotation.eulerAngles.y, cameraObject.transform.rotation.eulerAngles.y, blend),
             allObjects.transform.rotation.eulerAngles.z);

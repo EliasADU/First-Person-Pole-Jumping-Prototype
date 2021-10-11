@@ -64,7 +64,7 @@ public class FPStaffSpin : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
         {
@@ -104,11 +104,16 @@ public class FPStaffSpin : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    float followSharpness;
     void HeightToTarget()
     {
+
+        float blend = 1f - Mathf.Pow(1f - followSharpness, Time.deltaTime * 30f);
+
         heightT += Time.deltaTime;
         staff.transform.position = new Vector3(staff.transform.position.x, 
-            Mathf.Lerp(staff.transform.position.y, allObjects.transform.position.y + startHeightOffset + targetHeight, heightT * heightSpeed), 
+            Mathf.Lerp(staff.transform.position.y, allObjects.transform.position.y + startHeightOffset + targetHeight, blend), 
             staff.transform.position.z);
     }
 
