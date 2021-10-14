@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //class to apply a speedboost to a player when they enter a speedboost region
-public class SpeedboostCollisionCheck : MonoBehaviour
+public class SpeedupMulti : MonoBehaviour
 {
     //reference to player controller
     [SerializeField]
     PlayerController controller;
+
+    //reference to character controller
+    [SerializeField]
+    CharacterController characterController;
 
     //reference to speedboost amount
     [SerializeField]
@@ -39,11 +43,14 @@ public class SpeedboostCollisionCheck : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //entered speedboost region
-        if(other.transform.tag == "Speedboost")
+        if(other.transform.tag == "Speedboost Multi")
         {
-            //add an forward impulse
-            Vector3 direction = other.transform.forward;
-            controller.AddImpulse(new Impulse(direction, speedboostParameter));
+            //add an impulse
+            Vector3 cV = characterController.velocity;
+            Vector3.Normalize(cV);
+
+            //apply a negative impulse, which slows down the player
+            controller.AddImpulse(new Impulse(cV, speedboostParameter));
             timeAtSpeedBoostCollision = Time.realtimeSinceStartup;
             speedBoostIntervalCounter++;
         }
@@ -53,15 +60,17 @@ public class SpeedboostCollisionCheck : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //in the speedboost region
-        if(other.transform.tag == "Speedboost")
+        if(other.transform.tag == "Speedboost Multi")
         {
             speedBoostTimer += Time.realtimeSinceStartup - timeAtSpeedBoostCollision;
             if(speedBoostTimer >= speedBoostInterval)
             {
+                Vector3 cV = characterController.velocity;
+                Vector3.Normalize(cV);
+
                 speedBoostIntervalCounter++;
-                Vector3 direction = other.transform.forward;
                 speedBoostTimer = 0;
-                controller.AddImpulse(new Impulse(direction, speedboostParameter));
+                controller.AddImpulse(new Impulse(cV, speedboostParameter));
             }
         }
     }
@@ -69,10 +78,11 @@ public class SpeedboostCollisionCheck : MonoBehaviour
     //when player exits the speedboost region
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Speedboost")
+        if (other.transform.tag == "Speedboost Multi")
         {
-            Vector3 direction = other.transform.forward;
-            controller.AddImpulse(new Impulse(direction, speedboostParameter + speedBoostIntervalCounter));
+            Vector3 cV = characterController.velocity;
+            Vector3.Normalize(cV);
+            controller.AddImpulse(new Impulse(cV, speedboostParameter));
             speedBoostTimer = 0;
             speedBoostIntervalCounter = 0;
         }
