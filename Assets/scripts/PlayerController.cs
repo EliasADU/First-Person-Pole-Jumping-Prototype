@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         References.player = gameObject;
+        References.playerHealthSystem = gameObject.GetComponent<HealthSystem>();
     }
     
     // Start is called before the first frame update

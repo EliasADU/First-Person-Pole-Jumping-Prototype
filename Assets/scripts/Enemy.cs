@@ -5,27 +5,36 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    Transform Player;
     public float MoveSpeed = 4f;
     public float MaxDist;
     public float MinDist;
-    public float damage;
-    Transform Player;
-    public float visionRange;
-    private Vector3 randomNavPoint;
-    private float minDistanceNavPoint = 2f;
     private bool alerted;
+
+    public float visionRange;
+    private float minDistanceNavPoint = 2f;
     public float visionConeAngle;
+
     private LayerMask layerMask;
+    private Vector3 randomNavPoint;
+    private Animator animator;
+
+    [SerializeField]
+    float maxDamage; //Damage(x) = T* (r - x^3) / r
+
+
 
     private void Awake()
     {
         layerMask = LayerMask.GetMask("Walls", "Enemy");
+
     }
 
     void Start()
     {
         //initalize player to transform b/c easier to manipulate than controller.
         Player = References.player.transform;
+        animator = GetComponentInChildren<Animator>();
         alerted = false;
         GoToRandomNavPoint();
     }
@@ -56,6 +65,11 @@ public class Enemy : MonoBehaviour
             //Guard Alerted
             if (alerted)
             {
+                Debug.Log(References.playerHealthSystem.currentHealth);
+                float T = 1000, r = 100, x = Vector3.Distance(transform.position, Player.position);
+                maxDamage = T * (r - (Mathf.Pow(x,3))) / r;
+                References.playerHealthSystem.TakeDamage(maxDamage);
+                //maxDamage = Damage(x) = T * (r - x ^ 3) / r
                 //if enemy is looking at a player and there is a wall
                 if (Physics.Raycast(transform.position, vectorToPlayer, vectorToPlayer.magnitude, layerMask))
                 {
@@ -73,14 +87,22 @@ public class Enemy : MonoBehaviour
                         if (Vector3.Distance(transform.position, Player.position) >= MinDist) // Check if player is still within attacking range long range attack enemy
                         {
                             transform.position += moveTowardsPlayer; // Move towards player
+                            animator.SetBool("Attack", false);
                         }
+                        else
+                        {
+                            animator.SetBool("Attack", true);
+                        }
+
                     }
                 }
 
             }
             else
             {
-                if(References.navPoints.Count > 0)
+                animator.SetBool("Attack", false);
+
+                if (References.navPoints.Count > 0)
                 {
                     if (Vector3.Distance(transform.position, randomNavPoint) >= minDistanceNavPoint) // Check if player is still within attacking range long range attack enemy
                     {
@@ -152,7 +174,7 @@ public class Enemy : MonoBehaviour
             }
         }*/
     }
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         GameObject characterGameObject = collision.gameObject;
 
@@ -163,6 +185,6 @@ public class Enemy : MonoBehaviour
             playerHealthSystem.TakeDamage(damage);
         }
         
-    }
+    }*/
 
 }

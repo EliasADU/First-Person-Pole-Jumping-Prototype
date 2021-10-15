@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8501181065664243700
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5833221133453929601, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.3931749
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453929601, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453929601, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.19032574
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: ColorBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.36952654
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.36952654
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221133453944343, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.4528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -31.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -54.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.026374511
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.99965215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -183.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974228, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974231, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_Name
+      value: FastArea Multi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833221134656974231, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
+      propertyPath: m_TagString
+      value: Speedboost Multi
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ebb68cc33af39943ba22521e5ca7f8a, type: 3}
