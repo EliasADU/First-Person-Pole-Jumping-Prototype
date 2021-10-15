@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float maxHealth = 5;
-    float currentHealth;
+    public float maxHealth = 10000000;
+    public float currentHealth;
 
     public void TakeDamage(float damage)
     {
