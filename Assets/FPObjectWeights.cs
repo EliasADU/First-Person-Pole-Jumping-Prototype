@@ -51,7 +51,7 @@ public class FPObjectWeights : MonoBehaviour
         newTargetPosition = cameraObject.transform.position + (Quaternion.Euler(0, targetYRotation, 0) * new Vector3(holdSide, holdHeight, holdDepth));
 
         allObjects.transform.position = SuperSmoothLerp(allObjects.transform.position,
-            oldTargetPosition, newTargetPosition, Time.deltaTime, 40);
+            oldTargetPosition, newTargetPosition, Time.deltaTime, 80);
 
         oldTargetPosition = cameraObject.transform.position + (Quaternion.Euler(0, targetYRotation, 0) * new Vector3(holdSide, holdHeight, holdDepth));
 
