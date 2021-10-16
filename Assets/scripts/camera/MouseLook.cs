@@ -16,7 +16,6 @@ public class MouseLook : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.lockState = CursorLockMode.Confined;
         _playerTransform = transform;
         _playerTargetRot = _playerTransform.rotation;
         _cameraTargetRot = CameraTransform.rotation;
@@ -36,7 +35,6 @@ public class MouseLook : MonoBehaviour
             cameraMovementIsEnabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.lockState = CursorLockMode.Confined;
         }
         _rotation.x = Input.GetAxisRaw("Mouse X") * Sensitivity;
         _rotation.y = Input.GetAxisRaw("Mouse Y") * Sensitivity;

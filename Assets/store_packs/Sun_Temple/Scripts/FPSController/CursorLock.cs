@@ -35,6 +35,7 @@ namespace Sun_Temple{
 
 			if (!isLocked) {
 				Cursor.lockState = CursorLockMode.None;
+				Debug.Log("hit");
 				Cursor.visible = true;
 			}
 		}

@@ -7,21 +7,24 @@ public class AimParticleHandler : MonoBehaviour
     [SerializeField]
     GameObject aimingParticlesPrefab;
 
-    GameObject aimingParticles;
+    //GameObject aimingParticles;
 
     [SerializeField]
     GameObject blastParticlesPrefab;
 
-    GameObject blastParticles;
+    [SerializeField]
+    GameObject pullParticlesPrefab;
 
-    bool particlesStopped = true;
+    GameObject blastParticles;
+    GameObject pullParticles;
+
+    //bool particlesStopped = true;
 
     //ParticleSystem aimingParticles;
 
     // Start is called before the first frame update
     void Start()
     {
-        //aimingParticles = Instantiate(aimingParticlesPrefab, Vector3.zero, Quaternion.identity);
         
     }
 
@@ -31,17 +34,17 @@ public class AimParticleHandler : MonoBehaviour
         
     }
 
-    public void UpdateParticles(Vector3 pos, Vector3 direction)
-    {
-        if(aimingParticles == null)
-        {
-            aimingParticles = Instantiate(aimingParticlesPrefab, Vector3.zero, Quaternion.identity);
-        }
-        aimingParticles.transform.forward = -direction;
-        aimingParticles.transform.position = pos;
-        aimingParticles.SetActive(true);
-        particlesStopped = false;
-    }
+    //public void UpdateParticles(Vector3 pos, Vector3 direction)
+    //{
+    //    if(aimingParticles == null)
+    //    {
+    //        aimingParticles = Instantiate(aimingParticlesPrefab, Vector3.zero, Quaternion.identity);
+    //    }
+    //    aimingParticles.transform.forward = -direction;
+    //    aimingParticles.transform.position = pos;
+    //    aimingParticles.SetActive(true);
+    //    particlesStopped = false;
+    //}
 
     public void BlastParticles(Vector3 pos, Vector3 direction)
     {
@@ -50,14 +53,21 @@ public class AimParticleHandler : MonoBehaviour
         blastParticles.transform.position = pos;
     }
 
-    public void StopParticles()
+    public void PullParticles(Vector3 pos, Vector3 direction)
     {
-        if(particlesStopped == false)
-        {
-            DestroyPointer destroyer = aimingParticles.GetComponent<DestroyPointer>();
-            destroyer.DestroyMe();
-            aimingParticles = null;
-            particlesStopped = true;
-        }
+        pullParticles = Instantiate(pullParticlesPrefab, Vector3.zero, Quaternion.identity);
+        pullParticles.transform.forward = direction;
+        pullParticles.transform.position = pos;
     }
+
+    //public void StopParticles()
+    //{
+    //    if(particlesStopped == false)
+    //    {
+    //        DestroyPointer destroyer = aimingParticles.GetComponent<DestroyPointer>();
+    //        destroyer.DestroyMe();
+    //        aimingParticles = null;
+    //        particlesStopped = true;
+    //    }
+    //}
 }

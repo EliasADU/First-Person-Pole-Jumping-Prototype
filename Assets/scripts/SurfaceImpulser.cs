@@ -119,8 +119,12 @@ public class SurfaceImpulser : MonoBehaviour
                         pointingTo = -pointingTo;
                         strength = pullStrength;
                     }
-                    player.AddImpulse(new Impulse(pointingTo.normalized, impulseStrength));
+                    player.AddImpulse(new Impulse(pointingTo.normalized, strength));
                     impulseChargesSetter.SpendCharge();
+                    if(strength == pullStrength)
+                    {
+                        aimParticleHandler.PullParticles(cameraTransform.position + pointingTo, pointingTo);
+                    }
                     aimParticleHandler.BlastParticles(cameraTransform.position - pointingTo, pointingTo);
                     player.ResetGravity();
                 }
