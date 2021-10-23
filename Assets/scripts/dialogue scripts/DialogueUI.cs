@@ -53,13 +53,18 @@ public class DialogueUI : MonoBehaviour
         for(int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
             string dialogue = dialogueObject.Dialogue[i];
-            yield return typeWriterEffect.Run(dialogue, textLabel);
+
+            yield return RunTypingEffect(dialogue);
+
+            textLabel.text = dialogue;
 
             //if we encounter a response, we break and show the response
             if(i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
             {
                 break;
             }
+
+            yield return null;
 
             //otherwise, the user can move to the next dialogue by pressing space
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -75,6 +80,21 @@ public class DialogueUI : MonoBehaviour
         else
         {
             CloseDialogueBox();
+        }
+    }
+
+    private IEnumerator RunTypingEffect(string dialogue)
+    {
+        typeWriterEffect.Run(dialogue, textLabel);
+
+        while(typeWriterEffect.IsRunning)
+        {
+            yield return null;
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {{
+                typeWriterEffect.Stop();
+            }}
         }
     }
 
