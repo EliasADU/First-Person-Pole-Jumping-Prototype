@@ -46,6 +46,11 @@ public class DialogueUI : MonoBehaviour
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
+    public void AddResponseEvents(ResponseEvent[] responseEvents)
+    {
+        responseHandler.AddResponseEvents(responseEvents);
+    }
+
     //function that iterates through the number of "dialogues"
     //will show dialogue and responses
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
@@ -99,7 +104,7 @@ public class DialogueUI : MonoBehaviour
     }
 
     //function that closes the dialogue box and text from the user's screen
-    private void CloseDialogueBox()
+    public void CloseDialogueBox()
     {
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
