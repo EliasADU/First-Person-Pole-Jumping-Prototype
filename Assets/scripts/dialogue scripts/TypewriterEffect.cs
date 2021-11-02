@@ -11,15 +11,33 @@ public class TypewriterEffect : MonoBehaviour
     [SerializeField]
     private float writingSpeed;
 
-    //function to run
-    public Coroutine Run(string textToType, TMP_Text textLabel)
+    private readonly List<Punctuation> punctuations = new List<Punctuation>()
     {
-        return StartCoroutine(TypeText(textToType, textLabel));
+        new Punctuation(new HashSet<char>(){'.', '!', '?'}, 0.5f),
+        new Punctuation(new HashSet<char>(){',', ';', ':', '-'}, 0.25f)
+    };
+
+    public bool IsRunning{get; private set;}
+
+    private Coroutine typingCoroutine;
+
+    //function to run
+    public void Run(string textToType, TMP_Text textLabel)
+    {
+        typingCoroutine = StartCoroutine(TypeText(textToType, textLabel));
+    }
+
+    public void Stop()
+    {
+        StopCoroutine(typingCoroutine);
+        IsRunning = false;
     }
 
     //function to show the text being typed
     private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
+        IsRunning = true;
+
         //text should initially be empty
         textLabel.text = string.Empty;
 
@@ -29,18 +47,57 @@ public class TypewriterEffect : MonoBehaviour
         //while there is still text to show
         while(characterIndex < textToType.Length)
         {
+            int lastCharIndex = characterIndex;
+
             //calculate what characters to show
             timeWriting += Time.deltaTime * writingSpeed;
             characterIndex = Mathf.FloorToInt(timeWriting);
             characterIndex = Mathf.Clamp(characterIndex,0,textToType.Length);
 
-            //text that should appear at a given time
-            textLabel.text = textToType.Substring(0, characterIndex);
+            for(int i=lastCharIndex; i<characterIndex; i++)
+            {
+                bool isLast = i >= textToType.Length -1;
 
+                //text that should appear at a given time
+                textLabel.text = textToType.Substring(0, i+1);
+
+                //check that it is punctuation, not at the end, and the following character is not punctuation
+                if(IsPunctuation(textToType[i], out float waitTime) && !isLast && !IsPunctuation(textToType[i+1], out _))
+                {
+                    yield return new WaitForSeconds(waitTime);
+                }
+
+            }
             yield return null;
 
         }
+        IsRunning = false;
+    }
 
-        textLabel.text = textToType;
+    //used to determine if a given character is a form of punctuation
+    private bool IsPunctuation(char character, out float waitTime)
+    {
+        foreach(Punctuation punctuationCategory in punctuations)
+        {
+            if(punctuationCategory.Punctuations.Contains(character))
+            {
+                waitTime = punctuationCategory.WaitTime;
+                return true;
+            }
+        }
+        waitTime = default;
+        return false;
+    }
+
+    private readonly struct Punctuation
+    {
+        public readonly HashSet<char> Punctuations;
+        public readonly float WaitTime;
+
+        public Punctuation(HashSet<char> punctuations, float waitTime)
+        {
+            Punctuations = punctuations;
+            WaitTime = waitTime;
+        }
     }
 }

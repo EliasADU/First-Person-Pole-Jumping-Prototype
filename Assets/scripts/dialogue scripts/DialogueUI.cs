@@ -46,6 +46,11 @@ public class DialogueUI : MonoBehaviour
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
+    public void AddResponseEvents(ResponseEvent[] responseEvents)
+    {
+        responseHandler.AddResponseEvents(responseEvents);
+    }
+
     //function that iterates through the number of "dialogues"
     //will show dialogue and responses
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
@@ -53,13 +58,18 @@ public class DialogueUI : MonoBehaviour
         for(int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
             string dialogue = dialogueObject.Dialogue[i];
-            yield return typeWriterEffect.Run(dialogue, textLabel);
+
+            yield return RunTypingEffect(dialogue);
+
+            textLabel.text = dialogue;
 
             //if we encounter a response, we break and show the response
             if(i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
             {
                 break;
             }
+
+            yield return null;
 
             //otherwise, the user can move to the next dialogue by pressing space
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -78,8 +88,23 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
+    private IEnumerator RunTypingEffect(string dialogue)
+    {
+        typeWriterEffect.Run(dialogue, textLabel);
+
+        while(typeWriterEffect.IsRunning)
+        {
+            yield return null;
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {{
+                typeWriterEffect.Stop();
+            }}
+        }
+    }
+
     //function that closes the dialogue box and text from the user's screen
-    private void CloseDialogueBox()
+    public void CloseDialogueBox()
     {
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;

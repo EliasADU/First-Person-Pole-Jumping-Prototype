@@ -18,6 +18,8 @@ public class ResponseHandler : MonoBehaviour
     [SerializeField]
     private RectTransform responseContainer;
 
+    private ResponseEvent[] responseEvents;
+
     //dialogue UI object
     private DialogueUI dialogueUI;
 
@@ -31,6 +33,12 @@ public class ResponseHandler : MonoBehaviour
         dialogueUI = GetComponent<DialogueUI>();
     }
 
+    //function to set responseEvents to user parameter
+    public void AddResponseEvents(ResponseEvent[] responseEvents)
+    {
+        this.responseEvents = responseEvents;
+    }
+
     //function that shows the responses on the button in the top right corner
     public void ShowResponses(Response[] responses)
     {
@@ -38,15 +46,19 @@ public class ResponseHandler : MonoBehaviour
         float responseBoxHeight = 0;
 
         //iterate through all responses
-        foreach(Response response in responses)
+        for(int i=0; i < responses.Length; i++)
         {
+            //current response and index
+            Response response = responses[i];
+            int responseIndex = i;
+
             //instantiate
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
             //make the button visible
             responseButton.gameObject.SetActive(true);
             //show text and let the user click
             responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
-            responseButton.GetComponent<Button>().onClick.AddListener(()=> OnPickedResponse(response));
+            responseButton.GetComponent<Button>().onClick.AddListener(()=> OnPickedResponse(response, responseIndex));
 
             tempResponseButtons.Add(responseButton);
 
@@ -60,7 +72,7 @@ public class ResponseHandler : MonoBehaviour
     }
 
     //function for when a button is clicked by the user
-    private void OnPickedResponse(Response response)
+    private void OnPickedResponse(Response response, int responseIndex)
     {
         //after the button is clicked, you destroy it
         responseBox.gameObject.SetActive(false);
@@ -72,7 +84,25 @@ public class ResponseHandler : MonoBehaviour
 
         tempResponseButtons.Clear();
 
+        //check for in bounds index
+        if(responseEvents != null && responseIndex <= responseEvents.Length)
+        {
+            responseEvents[responseIndex].OnPickedResponse?.Invoke();
+        }
+
+        //deallocate
+        responseEvents = null;
+
         //now, show the dialogue instead
-        dialogueUI.ShowDialogue(response.DialogueObject);
+        if(response.DialogueObject)
+        {
+            dialogueUI.ShowDialogue(response.DialogueObject);
+        }
+
+        //close box: fix bug
+        else
+        {
+            dialogueUI.CloseDialogueBox();
+        }
     }
 }

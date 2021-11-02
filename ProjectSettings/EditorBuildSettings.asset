@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/scenes/elias/testing_grounds/testing_elias.unity
     guid: bfaed59e1db052046a4318648a6c4d98
   - enabled: 1
