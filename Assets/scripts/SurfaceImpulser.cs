@@ -108,7 +108,7 @@ public class SurfaceImpulser : MonoBehaviour
             {
                 validDistance = maxPullDistance;
             }
-            if (Time.timeScale == 1f)
+            if (Time.timeScale == 1f || Time.timeScale == 0.5f)
             {
                 if (pointingTo.magnitude <= validDistance)
                 {

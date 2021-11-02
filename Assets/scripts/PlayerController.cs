@@ -32,18 +32,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     ImpulseCharges impulseCharges;
 
-
-    //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
-    [SerializeField]
-    float cooldownPeriod;
-
     List<Impulse> currentImpulses;
 
     Vector3 lockedwasdMove;
     bool locked;
 
-
-    float timeSinceBoost;
+    [SerializeField]
+    bool isgrounded;
 
     private void Awake()
     {
@@ -65,8 +60,7 @@ public class PlayerController : MonoBehaviour
         Move();
         ClearFinishedImpulses();
 
-        //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
-        timeSinceBoost += Time.deltaTime;
+        isgrounded = characterController.isGrounded;
     }
 
     public void AddImpulse(Impulse i, bool isSurfaceBounce = true)
@@ -89,7 +83,6 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         ////VERTICAL MOVEMENT////
-
         if (characterController.isGrounded || gravitationalSpeed >= 0)
         {
             gravitationalSpeed = minDownwardVelocity;
@@ -111,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
 
         //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
-        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && timeSinceBoost >= cooldownPeriod && recoveryMeter.CanRecover())
+        if (Input.GetKeyDown(KeyCode.Space) && !characterController.isGrounded && recoveryMeter.CanRecover())
         {
             AddImpulse(getMiniImpulse());
             impulseCharges.Recharge();
@@ -120,9 +113,6 @@ public class PlayerController : MonoBehaviour
             lockedwasdMove = wasdMove;
             ResetGravity();
             locked = true;
-
-            //cooldown period on the jumps while in the air: denoting all changes made feel free to delete
-            timeSinceBoost = 0;
         }
         if (characterController.isGrounded)
         {
