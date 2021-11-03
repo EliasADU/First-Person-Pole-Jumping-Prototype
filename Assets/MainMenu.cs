@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void NewGame()
     {
