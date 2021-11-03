@@ -7636,5 +7636,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7549477689177882617, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 3496792503356790715}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
+--- !u!95 &3496792503356790715 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2119217699352242335, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
+  m_PrefabInstance: {fileID: 3496792503356790714}
+  m_PrefabAsset: {fileID: 0}

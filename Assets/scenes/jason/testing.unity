@@ -138,6 +138,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8789952923481546222, guid: 63b54b3a52ac88443a7afce07bef36d4, type: 3}
   m_PrefabInstance: {fileID: 232426058}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &126792116
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 3201
+  m_Height: 3201
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &154744714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3241169994100365035, guid: 517ef2f2df372ad4ba70739ad8e567e9, type: 3}
@@ -233,7 +269,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 374015215}
+  m_Cookie: {fileID: 126792116}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -487,42 +523,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b3a910975d8925b4cb72c8446bee9f6b, type: 3}
   m_PrefabInstance: {fileID: 1841009922}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &374015215
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 3201
-  m_Height: 3201
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &459700075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,6 +1547,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1321615408}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: SavePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &684955391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2330,6 +2342,14 @@ PrefabInstance:
     - target: {fileID: 3496792504295025523, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549477689177882617, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 1655755525}
+    - target: {fileID: 7549477689177882617, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
+      propertyPath: transitionTime
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
@@ -3783,6 +3803,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1321615408}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: LoadPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1136203894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4490,6 +4522,7 @@ GameObject:
   - component: {fileID: 1321615403}
   - component: {fileID: 1321615400}
   - component: {fileID: 1321615401}
+  - component: {fileID: 1321615408}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -4683,6 +4716,20 @@ MonoBehaviour:
   impulseChargesSetter: {fileID: 1321615400}
   reticleBehavior: {fileID: 2113668934}
   aimParticleHandler: {fileID: 1321615406}
+--- !u!114 &1321615408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321615396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54589348871bffc4f9b7c10a9f9d5c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  health: 100
 --- !u!1 &1357300501
 GameObject:
   m_ObjectHideFlags: 0
@@ -5928,6 +5975,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645636787}
   m_CullTransparentMesh: 1
+--- !u!95 &1655755525 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2119217699352242335, guid: 50b94e0574f184946a0ee892763c64f3, type: 3}
+  m_PrefabInstance: {fileID: 873108946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1661539715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7333,7 +7385,6 @@ GameObject:
   - component: {fileID: 1956820940}
   - component: {fileID: 1956820941}
   - component: {fileID: 1956820946}
-  - component: {fileID: 1956820947}
   - component: {fileID: 1956820945}
   m_Layer: 5
   m_Name: PauseMenu
@@ -7551,14 +7602,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!81 &1956820947
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956820939}
-  m_Enabled: 1
 --- !u!1 &1969498535
 GameObject:
   m_ObjectHideFlags: 0
