@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 32536290}
   - component: {fileID: 32536289}
   - component: {fileID: 32536288}
+  - component: {fileID: 32536299}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimingParticlesPrefab: {fileID: 8074400871437686489, guid: e4698e15394b0fa4dba22a80b3a7506f, type: 3}
   blastParticlesPrefab: {fileID: 2725781009892717788, guid: 74d3c1c5bacdcde4e9bbed0c04587cba, type: 3}
-  pullParticlesPrefab: {fileID: 0}
+  pullParticlesPrefab: {fileID: 2725781009892717788, guid: 74d3c1c5bacdcde4e9bbed0c04587cba, type: 3}
 --- !u!114 &32536294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +374,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &32536299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32536287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568c4e1e8e0b4444287052e82ac1783a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 120
+  lowHealth: 20
+  bloodImage: {fileID: 2080657762}
 --- !u!1001 &35037517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3244,7 +3260,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 816860894}
+  m_Cookie: {fileID: 1202091634}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -3822,42 +3838,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811065431}
   m_CullTransparentMesh: 1
---- !u!84 &816860894
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 3201
-  m_Height: 3201
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &868849305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5159,6 +5139,42 @@ RectTransform:
   m_AnchoredPosition: {x: 23, y: 60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!84 &1202091634
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 3201
+  m_Height: 3201
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1222825538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5597,7 +5613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 32536296}
-  characterController: {fileID: 0}
+  characterController: {fileID: 32536297}
   slowDownParameter: 0
   slowDownInterval: 0.1
 --- !u!114 &1464562034
