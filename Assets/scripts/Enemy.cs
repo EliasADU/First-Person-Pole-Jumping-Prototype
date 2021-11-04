@@ -19,10 +19,18 @@ public class Enemy : MonoBehaviour
     private Vector3 randomNavPoint;
     private Animator animator;
 
-    [SerializeField]
-    float maxDamage; //Damage(x) = T* (r - x^3) / r
+    
 
 
+
+
+    private float damageTick; //Damage(x) = T* (r - x^3) / r
+    private float T;
+    private float damage;
+    private float radius;
+
+    private float timer;
+    private float timeBetweenAttacks = 1.15f;
 
     private void Awake()
     {
@@ -35,8 +43,12 @@ public class Enemy : MonoBehaviour
         //initalize player to transform b/c easier to manipulate than controller.
         Player = References.player.transform;
         animator = GetComponentInChildren<Animator>();
+        damage = 10.1f;
+        radius = 0.5f;
+        T = 0.00015f;
         alerted = false;
         GoToRandomNavPoint();
+        timer = 0.3f;
     }
 
     // Update is called once per frame
@@ -58,18 +70,13 @@ public class Enemy : MonoBehaviour
         //Doesn't go down to player's Y Axis Level
         if (Player != null)
         {
-            //Debug.Log(Vector3.Distance(transform.position, Player.position));
             Vector3 vectorToPlayer = Player.position - transform.position; //find player's position from enemy
             Vector3 moveTowardsPlayer = transform.forward * MoveSpeed * Time.deltaTime;
 
             //Guard Alerted
             if (alerted)
             {
-                Debug.Log(References.playerHealthSystem.currentHealth);
-                float T = 1000, r = 100, x = Vector3.Distance(transform.position, Player.position);
-                maxDamage = T * (r - (Mathf.Pow(x,3))) / r;
-                References.playerHealthSystem.TakeDamage(maxDamage);
-                //maxDamage = Damage(x) = T * (r - x ^ 3) / r
+       
                 //if enemy is looking at a player and there is a wall
                 if (Physics.Raycast(transform.position, vectorToPlayer, vectorToPlayer.magnitude, layerMask))
                 {
@@ -80,20 +87,52 @@ public class Enemy : MonoBehaviour
                 {
 
                     transform.LookAt(Player); //look at player
-                    //Debug.Log(Vector3.Distance(transform.position, Player.position)); //Debug
 
                     if (Vector3.Distance(transform.position, Player.position) <= MaxDist) // Check if player is still within chasing distance
                     {
+                        float x = Vector3.Distance(transform.position, Player.position);
+                        damageTick =  (T * ((radius - Mathf.Pow(x, 3)) / radius) + damage);
+                        //Debug.Log(damageTick);
+
+                        timer += Time.deltaTime;
+
+                        if (timer >= timeBetweenAttacks)
+                        {
+                            References.playerHealthSystem.TakeDamage(damageTick);
+                            if(damageTick > 0)
+                                animator.SetBool("Attack", true);
+                            else
+                                animator.SetBool("Attack", false);
+                            timer = 0.3f;
+                        }
+
                         if (Vector3.Distance(transform.position, Player.position) >= MinDist) // Check if player is still within attacking range long range attack enemy
                         {
                             transform.position += moveTowardsPlayer; // Move towards player
-                            animator.SetBool("Attack", false);
                         }
-                        else
+                        /*else
                         {
-                            animator.SetBool("Attack", true);
-                        }
 
+                            // if attack animation wants to be added based off distance
+
+                           *//* 
+                            animator.SetBool("Attack", true);
+                            timer += Time.deltaTime;
+
+                            if (timer >= timeBetweenAttacks)
+                            {
+                                //References.playerHealthSystem.TakeDamage(damage);
+                                References.playerHealthSystem.TakeDamage(damageTick);
+                                timer = 0.25f;
+                            }*//*
+
+                        }*/
+
+                    }
+
+                    else
+                    {
+                        alerted = false;
                     }
                 }
 
@@ -101,6 +140,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 animator.SetBool("Attack", false);
+                timer = 0.3f;
 
                 if (References.navPoints.Count > 0)
                 {
@@ -128,63 +168,8 @@ public class Enemy : MonoBehaviour
         }
 
 
-        //Mesh Agent Code
-        /*if (Player != null)
-        {
-            if (navMeshAgent.Warp(Player.position))
-            {
-                navMeshAgent.destination = Player.position;
-            }
-        }
-*/
-        /*
-                Vector3 playerPosition = References.thePlayer.transform.position;
-                Vector3 vectorToPlayer = playerPosition - transform.position;
-                ourRigidBody.velocity = vectorToPlayer.normalized * speed;
-                Vector3 playerPositionAtOurHeight = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
-                transform.LookAt(playerPositionAtOurHeight);*/
-
-        /*if (Player != null) //Follows Player Well But Gets Stuck Behind Walls
-        {
-            Vector3 vectorToPlayer = Player.position - transform.position;
-            if (alerted)
-            {
-                transform.LookAt(Player);
-                Debug.Log(Vector3.Distance(transform.position, Player.position));
-
-                if (Vector3.Distance(transform.position, Player.position) <= MaxDist)
-                {
-
-                    transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-                }
-            }
-            else
-            {
-                if (Vector3.Distance(transform.position, Player.position) <= visionRange)
-                {
-                    if (Vector3.Angle(transform.forward, vectorToPlayer) <= visionConeAngle)
-                    {
-                        if (!Physics.Raycast(transform.position, vectorToPlayer, vectorToPlayer.magnitude, layerMask))
-                        {
-                            alerted = true;
-                        }
-                    }
-                }
-            }
-        }*/
+        
     }
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        GameObject characterGameObject = collision.gameObject;
 
-        
-        if(characterGameObject.GetComponent<CharacterController>() != null)
-        {
-            HealthSystem playerHealthSystem = characterGameObject.GetComponent<HealthSystem>();
-            playerHealthSystem.TakeDamage(damage);
-        }
-        
-    }*/
 
 }

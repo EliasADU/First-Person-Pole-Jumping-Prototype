@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class References 
 {
@@ -9,4 +10,5 @@ public static class References
     public static List<NavPoint> navPoints = new List<NavPoint>();
 
     public static HealthSystem playerHealthSystem;
+
 }
