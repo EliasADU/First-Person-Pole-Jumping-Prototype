@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Testing
   m_EditorClassIdentifier: 
   dialogue:
-  - Are you lost?
-  - Cool!
-  - Final test
+  - Did you know - that there are new features this increment?
+  - 'Isn''t that interesting? Do you find that to be the case? This is an -- extra
+    long message. '
+  - Button test
   responses:
   - responseText: Yes
     dialogueObject: {fileID: 11400000, guid: a224f3cb7551847e78eaac0675c31233, type: 2}
