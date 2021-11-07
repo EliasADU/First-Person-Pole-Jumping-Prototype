@@ -743,6 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1982985286}
+  speedboostParameter: 0
   speedBoostInterval: 0.1
 --- !u!114 &188019878
 MonoBehaviour:
@@ -2966,7 +2967,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 1618320783}
+  m_Cookie: {fileID: 2015295225}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -3128,16 +3129,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731136769}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 992867387}
-  m_RootOrder: 5
+  m_Father: {fileID: 1796757271}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000038147, y: 87.3}
+  m_AnchoredPosition: {x: 0, y: -0.69999695}
   m_SizeDelta: {x: 84.9691, y: 26.1191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!21 &733416857
@@ -4486,6 +4487,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4577,6 +4579,23 @@ MonoBehaviour:
   tiltSpeed: 0.2
   leftBtn: 97
   rightBtn: 100
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565947962a69d214ca28420c85030363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1982985285}
+  target: {fileID: 1954037489}
+  border: {fileID: 1796757273}
+  distanceText: {fileID: 731136770}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &984213111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4860,7 +4879,7 @@ RectTransform:
   - {fileID: 707383629}
   - {fileID: 85161570}
   - {fileID: 870417051}
-  - {fileID: 731136772}
+  - {fileID: 1796757271}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5994,6 +6013,7 @@ MonoBehaviour:
   holdSide: 0.09
   holdDepth: -0.1
   moveSpeed: 101.82
+  followSharpness: 0
 --- !u!20 &1593263700
 Camera:
   m_ObjectHideFlags: 0
@@ -6064,6 +6084,7 @@ MonoBehaviour:
   fireSlash1: {fileID: 773855826}
   darkBeam: {fileID: 791859052}
   fireBeam: {fileID: 1519685729}
+  followSharpness: 0
 --- !u!1 &1596289380
 GameObject:
   m_ObjectHideFlags: 0
@@ -6161,42 +6182,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596289380}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!84 &1618320783
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 3201
-  m_Height: 3201
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1719635608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,6 +6361,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1796757270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1796757271}
+  - component: {fileID: 1796757272}
+  - component: {fileID: 1796757273}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1796757271
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796757270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 731136772}
+  m_Father: {fileID: 992867387}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 88}
+  m_SizeDelta: {x: 86, y: 27}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1796757272
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796757270}
+  m_CullTransparentMesh: 1
+--- !u!114 &1796757273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796757270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1799886393
 GameObject:
   m_ObjectHideFlags: 0
@@ -6612,7 +6673,6 @@ GameObject:
   - component: {fileID: 1954037488}
   - component: {fileID: 1954037487}
   - component: {fileID: 1954037486}
-  - component: {fileID: 1954037485}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -6620,20 +6680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1954037485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954037484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565947962a69d214ca28420c85030363, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1982985285}
-  distanceText: {fileID: 731136770}
 --- !u!136 &1954037486
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6795,7 +6841,7 @@ MonoBehaviour:
   miniImpulseStrength: 10
   recoveryMeter: {fileID: 188019880}
   impulseCharges: {fileID: 188019879}
-  cooldownPeriod: 0
+  isgrounded: 0
 --- !u!114 &1982985287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6847,6 +6893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimingParticlesPrefab: {fileID: 8074400871437686489, guid: e4698e15394b0fa4dba22a80b3a7506f, type: 3}
   blastParticlesPrefab: {fileID: 2725781009892717788, guid: 74d3c1c5bacdcde4e9bbed0c04587cba, type: 3}
+  pullParticlesPrefab: {fileID: 0}
 --- !u!114 &1982985290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6937,6 +6984,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989625867}
   m_CullTransparentMesh: 1
+--- !u!84 &2015295225
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 3201
+  m_Height: 3201
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &2041274191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7579,6 +7662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1982985286}
+  speedboostParameter: 0
   speedBoostInterval: 0.1
 --- !u!4 &6265157444420365341
 Transform:
