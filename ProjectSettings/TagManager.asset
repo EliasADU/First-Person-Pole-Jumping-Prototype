@@ -8,6 +8,7 @@ TagManager:
   - Slowdown
   - Superjump
   - Speedboost Multi
+  - Jumpboost
   layers:
   - Default
   - TransparentFX
