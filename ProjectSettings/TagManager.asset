@@ -9,6 +9,7 @@ TagManager:
   - Superjump
   - Speedboost Multi
   - Jumpboost
+  - Slowdown Uni
   layers:
   - Default
   - TransparentFX
