@@ -5,8 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
+    [SerializeField]
     public int Level { get; set; }
+
+    [SerializeField]
     public int Health { get; set; }
+
+    [SerializeField]
     public float[] Position { get; set; }
 
     public static PlayerData FromPlayer(Player player)
@@ -15,7 +20,6 @@ public class PlayerData
         {
             Level = player.level,
             Health = player.health,
-
             Position = new float[]
             {
                 player.transform.position.x,
