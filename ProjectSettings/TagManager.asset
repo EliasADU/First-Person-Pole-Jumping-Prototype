@@ -10,6 +10,7 @@ TagManager:
   - Speedboost Multi
   - Jumpboost
   - Slowdown Uni
+  - TeleportRand
   layers:
   - Default
   - TransparentFX
