@@ -14,6 +14,7 @@ public class HealthSystem : MonoBehaviour
     {
         if(damage > 0)
         {
+            damage /= References.numberOfEnemies.Count;
             currentHealth -= damage;
 
             if (currentHealth <= 0)
@@ -46,7 +47,7 @@ public class HealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
 
         if (bloodImage != null)
         {

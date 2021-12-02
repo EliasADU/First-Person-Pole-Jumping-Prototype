@@ -11,4 +11,7 @@ public static class References
 
     public static HealthSystem playerHealthSystem;
 
+    public static List<Enemy> numberOfEnemies = new List<Enemy>();
+
+
 }
