@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
 
     //quits out of the game

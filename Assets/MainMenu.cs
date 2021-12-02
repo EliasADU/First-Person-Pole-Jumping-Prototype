@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     }
     public void NewGame()
     {
-        SceneManager.LoadScene("testing");
+        SceneManager.LoadScene(1);
         //any testing scene can be put here
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             //plays next scene in file/build settings

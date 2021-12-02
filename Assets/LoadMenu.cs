@@ -21,7 +21,7 @@ public class LoadMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    /*public void Load2()
+    public void Load2()
     {
         SceneManager.LoadScene(2);
     }
@@ -33,11 +33,11 @@ public class LoadMenu : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
-    public void Load1(5)
+    public void Load5()
     {
         SceneManager.LoadScene(5);
     }
-    public void Load1(6)
+    /*public void Load1(6)
     {
         SceneManager.LoadScene(6);
     }
