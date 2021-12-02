@@ -15,6 +15,7 @@ public class HealthSystem : MonoBehaviour
         if(damage > 0)
         {
             damage /= References.numberOfEnemies.Count;
+            Debug.Log(damage);
             currentHealth -= damage;
 
             if (currentHealth <= 0)
