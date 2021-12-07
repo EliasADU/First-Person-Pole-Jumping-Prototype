@@ -16,8 +16,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.P))
         {
-                Pause();
-         
+             Pause(); 
+
+
         }
     }
 
@@ -26,7 +27,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         //player.cameraMovementIsEnabled=true;
         GameIsPaused = false;
     }
@@ -36,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0;
         //player.cameraMovementIsEnabled=false;
         GameIsPaused = true;
     }

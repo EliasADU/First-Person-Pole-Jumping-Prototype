@@ -13,11 +13,11 @@ public class Reticle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale == 0f)
+        if (Time.timeScale == 0)
         {
             this.gameObject.SetActive(false);
         }
-        else
+        if (Time.timeScale == 1)
         {
             this.gameObject.SetActive(true);
         }

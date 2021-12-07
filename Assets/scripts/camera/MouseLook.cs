@@ -21,9 +21,21 @@ public class MouseLook : MonoBehaviour
         _cameraTargetRot = CameraTransform.rotation;
         cameraMovementIsEnabled = true;
     }
-
+    void Pause()
+    {
+        Cursor.visible = true;
+    
+        Time.timeScale = 0f;
+        //player.cameraMovementIsEnabled=false;
+       
+    }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            Pause();
+
+        }
         if (Time.timeScale == 0f)
         {
             cameraMovementIsEnabled = false;

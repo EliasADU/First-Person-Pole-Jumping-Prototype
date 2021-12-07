@@ -57,10 +57,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        ClearFinishedImpulses();
+        if (Time.timeScale == 1)
+        {
+            this.gameObject.SetActive(true);
+            Move();
+            ClearFinishedImpulses();
 
-        isgrounded = characterController.isGrounded;
+            isgrounded = characterController.isGrounded;
+        }
     }
 
     public void AddImpulse(Impulse i, bool isSurfaceBounce = true)
